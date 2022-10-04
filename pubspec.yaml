@@ -2,25 +2,27 @@ name: check_postage_app
 version: 1.0.0+1
 publish_to: none
 description: A new Flutter project.
-environment: 
-  sdk: '>=2.18.0 <3.0.0'
+environment:
+  sdk: ">=2.18.0 <3.0.0"
 
-dependencies: 
+dependencies:
   cupertino_icons: ^1.0.2
   get_cli: ^1.8.1
   get: 4.6.5
   dropdown_search: 5.0.3
   dio: 4.0.6
   http: 0.13.5
-  flutter: 
-    sdk: flutter
   either_dart: ^0.2.0
+  google_fonts: ^3.0.1
+  intl: ^0.17.0
 
-dev_dependencies: 
-  flutter_lints: ^2.0.0
-  flutter_test: 
+  flutter:
     sdk: flutter
 
-flutter: 
-  uses-material-design: true
+dev_dependencies:
+  flutter_lints: ^2.0.0
+  flutter_test:
+    sdk: flutter
 
+flutter:
+  uses-material-design: true
