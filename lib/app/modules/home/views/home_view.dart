@@ -1,3 +1,4 @@
+import 'package:check_postage_app/app/core/utils/color_util.dart';
 import 'package:check_postage_app/app/core/utils/style_util.dart';
 import 'package:check_postage_app/app/data/models/city_model.dart';
 import 'package:check_postage_app/app/data/models/province_model.dart';
@@ -13,8 +14,29 @@ class HomeView extends GetView<HomeController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Ongkos Kirim'),
+        elevation: 0.5,
+        title: const Text(
+          'Shipp',
+          style: TextStyle(
+            fontSize: 14,
+            color: blackColor,
+          ),
+        ),
         centerTitle: true,
+        backgroundColor: whiteColor,
+      ),
+      bottomNavigationBar: Container(
+        color: whiteColor,
+        child: Padding(
+          padding: const EdgeInsets.all(12.0),
+          child: ElevatedButton(
+            onPressed: () {
+              controller.checkPostage();
+            },
+            style: StyleUtility().buttonStylePill(),
+            child: const Text("Periksa Biaya"),
+          ),
+        ),
       ),
       body: ListView(
         padding: const EdgeInsets.all(20),
@@ -90,12 +112,10 @@ class HomeView extends GetView<HomeController> {
           ),
           TextField(
             controller: controller.weightTec,
+            cursorColor: primaryColor,
             inputFormatters: [FilteringTextInputFormatter.digitsOnly],
-            decoration: const InputDecoration(
-              labelText: "Berat Barang",
-              contentPadding: EdgeInsets.symmetric(horizontal: 12),
-              border: OutlineInputBorder(),
-            ),
+            decoration:
+                StyleUtility().outlinedInputDecoration('Berat Barang (Gram)'),
           ),
           const SizedBox(
             height: 16,
@@ -122,48 +142,8 @@ class HomeView extends GetView<HomeController> {
             onChanged: (value) => controller.courier.value = value!['code'],
           ),
           const SizedBox(
-            height: 24,
+            height: 16,
           ),
-          ElevatedButton(
-            onPressed: () {
-              controller.checkPostage();
-            },
-            child: const Text("Cek Ongkos Kirim"),
-          ),
-          const SizedBox(
-            height: 24,
-          ),
-          GetBuilder(
-            init: controller,
-            builder: (_) {
-              if (controller.listCourierServicePostage.isEmpty) {
-                return const Text("Halo mau kirim barang kemana nih");
-              }
-              return ListView.builder(
-                shrinkWrap: true,
-                primary: false,
-                physics: const NeverScrollableScrollPhysics(),
-                itemCount: controller.listCourierServicePostage.length,
-                itemBuilder: (context, index) {
-                  final serviceCourier =
-                      controller.listCourierServicePostage[index];
-                  final cost = serviceCourier.cost![0];
-                  return Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: [
-                        Text("Kurir Service : ${serviceCourier.service!}"),
-                        Text("Desciption : ${serviceCourier.description!}"),
-                        Text("Biaya : ${cost.value}"),
-                        Text("Estimasi Tiba : ${cost.etd} Hari")
-                      ],
-                    ),
-                  );
-                },
-              );
-            },
-          )
         ],
       ),
     );
