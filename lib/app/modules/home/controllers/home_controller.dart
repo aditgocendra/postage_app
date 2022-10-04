@@ -1,7 +1,7 @@
 import 'package:check_postage_app/app/data/models/city_model.dart';
-import 'package:check_postage_app/app/data/models/courier_service_model.dart';
 import 'package:check_postage_app/app/data/models/province_model.dart';
 import 'package:check_postage_app/app/data/repositories/postage_repository.dart';
+import 'package:check_postage_app/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -13,7 +13,6 @@ class HomeController extends GetxController {
   final courier = ''.obs;
 
   // List Model Data
-  List<CourierServiceModel> listCourierServicePostage = [];
   List<ProvinceModel> listProvince = [];
   List<CityModel> listCity = [];
 
@@ -61,7 +60,6 @@ class HomeController extends GetxController {
         margin: EdgeInsets.zero,
         borderRadius: 0,
       );
-
       return;
     }
 
@@ -76,9 +74,7 @@ class HomeController extends GetxController {
       Get.defaultDialog(title: "Error", middleText: result.left.message ?? '');
       return;
     }
-
-    listCourierServicePostage = result.right;
-    update();
+    Get.toNamed(Routes.resultPostage, arguments: result.right);
   }
 
   // Validation Field
@@ -108,7 +104,6 @@ class HomeController extends GetxController {
   @override
   void onInit() async {
     await setProvinceData();
-
     super.onInit();
   }
 }
