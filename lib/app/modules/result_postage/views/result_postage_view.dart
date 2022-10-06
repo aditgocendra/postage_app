@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 
 import '../../../core/utils/color_util.dart';
 import '../../../core/utils/format_util.dart';
@@ -23,28 +24,79 @@ class ResultPostageView extends GetView<ResultPostageController> {
             color: Colors.black,
           ),
         ),
-        title: const Text(
-          'Pos Indonesia',
-          style: TextStyle(
-            fontSize: 14,
-            color: blackColor,
-          ),
+        title: Obx(
+          () {
+            if (controller.isLoading.isTrue) {
+              return LoadingAnimationWidget.staggeredDotsWave(
+                color: primaryColor,
+                size: 50,
+              );
+            }
+
+            return Text(
+              controller.courierName.value,
+              style: const TextStyle(
+                fontSize: 16,
+                color: blackColor,
+              ),
+            );
+          },
         ),
         centerTitle: true,
         backgroundColor: whiteColor,
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(12.0),
-        child: ListView.builder(
-          shrinkWrap: true,
-          primary: false,
-          physics: const NeverScrollableScrollPhysics(),
-          itemCount: controller.listCourierServicePostage.length,
-          itemBuilder: (context, index) {
-            final serviceCourier = controller.listCourierServicePostage[index];
-            return CardCourierService(serviceCourier: serviceCourier);
-          },
-        ),
+      body: GetBuilder(
+        init: controller,
+        builder: (_) {
+          if (controller.isLoading.isTrue) {
+            return const LoadingCustom();
+          }
+          return ListView.builder(
+            shrinkWrap: true,
+            primary: false,
+            padding: const EdgeInsets.all(12),
+            physics: const NeverScrollableScrollPhysics(),
+            itemCount: controller.listCourierServicePostage.length,
+            itemBuilder: (context, index) {
+              return CardCourierService(
+                serviceCourier: controller.listCourierServicePostage[index],
+              );
+            },
+          );
+        },
+      ),
+    );
+  }
+}
+
+class LoadingCustom extends StatelessWidget {
+  const LoadingCustom({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(64.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Image.asset(
+            'assets/images/art/loading_art.png',
+            fit: BoxFit.cover,
+          ),
+          const SizedBox(
+            height: 16,
+          ),
+          const Text(
+            'Tunggu bentar yaa',
+            style: TextStyle(
+              fontSize: 24,
+              fontWeight: FontWeight.bold,
+            ),
+            textAlign: TextAlign.center,
+          )
+        ],
       ),
     );
   }
