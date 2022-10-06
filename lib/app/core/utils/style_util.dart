@@ -12,11 +12,9 @@ class StyleUtility {
   InputDecoration outlinedInputDecoration(String label) {
     return InputDecoration(
       labelText: label,
-      labelStyle: const TextStyle(fontSize: 12),
       contentPadding: const EdgeInsets.symmetric(horizontal: 12),
       border: outlinedBorderStyle(),
       focusedBorder: outlinedBorderStyle(),
-      floatingLabelStyle: const TextStyle(color: primaryColor),
     );
   }
 
@@ -31,7 +29,6 @@ class StyleUtility {
 
   ButtonStyle buttonStylePill() {
     return ElevatedButton.styleFrom(
-      backgroundColor: primaryColor,
       shape: const StadiumBorder(),
       minimumSize: const Size.fromHeight(45),
     );
