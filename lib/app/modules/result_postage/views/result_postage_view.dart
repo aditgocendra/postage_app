@@ -124,12 +124,15 @@ class CardCourierService extends StatelessWidget {
               style: const TextStyle(fontSize: 12),
             ),
             subtitle: Text(
-              "${cost.etd}",
+              "Estimasi : ${cost.etd}",
               style: const TextStyle(fontSize: 10),
             ),
             trailing: Text(
               FormatUtility.currencyRupiah(cost.value!),
-              style: const TextStyle(fontSize: 12),
+              style: const TextStyle(
+                fontSize: 12,
+                fontWeight: FontWeight.bold,
+              ),
             ),
           )
         ],
