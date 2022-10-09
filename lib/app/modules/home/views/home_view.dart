@@ -68,6 +68,16 @@ class ContentBody extends StatelessWidget {
             return DropdownSearch<ProvinceModel>(
               itemAsString: (ProvinceModel prv) => prv.provinceAsString(),
               items: controller.listProvince,
+              popupProps: PopupProps.menu(
+                fit: FlexFit.loose,
+                menuProps: const MenuProps(
+                  backgroundColor: Colors.transparent,
+                  elevation: 0,
+                ),
+                containerBuilder: (ctx, popupWidget) {
+                  return StyleUtility().popupMenuDecoration(popupWidget);
+                },
+              ),
               dropdownDecoratorProps:
                   StyleUtility().dropdownDecorator("Provinsi Asal"),
               onChanged: (province) {
@@ -85,6 +95,16 @@ class ContentBody extends StatelessWidget {
           asyncItems: (String filter) async {
             return await controller.setCity(controller.originProvince.value);
           },
+          popupProps: PopupProps.menu(
+            fit: FlexFit.loose,
+            menuProps: const MenuProps(
+              backgroundColor: Colors.transparent,
+              elevation: 0,
+            ),
+            containerBuilder: (ctx, popupWidget) {
+              return StyleUtility().popupMenuDecoration(popupWidget);
+            },
+          ),
           dropdownDecoratorProps:
               StyleUtility().dropdownDecorator("Kota / Kabupaten Asal"),
           onChanged: (city) {
@@ -101,6 +121,16 @@ class ContentBody extends StatelessWidget {
             return DropdownSearch<ProvinceModel>(
               itemAsString: (ProvinceModel prv) => prv.provinceAsString(),
               items: controller.listProvince,
+              popupProps: PopupProps.menu(
+                fit: FlexFit.loose,
+                menuProps: const MenuProps(
+                  backgroundColor: Colors.transparent,
+                  elevation: 0,
+                ),
+                containerBuilder: (ctx, popupWidget) {
+                  return StyleUtility().popupMenuDecoration(popupWidget);
+                },
+              ),
               dropdownDecoratorProps:
                   StyleUtility().dropdownDecorator("Provinsi Tujuan"),
               onChanged: (province) {
@@ -121,6 +151,16 @@ class ContentBody extends StatelessWidget {
               controller.destinationProvince.value,
             );
           },
+          popupProps: PopupProps.menu(
+            fit: FlexFit.loose,
+            menuProps: const MenuProps(
+              backgroundColor: Colors.transparent,
+              elevation: 0,
+            ),
+            containerBuilder: (ctx, popupWidget) {
+              return StyleUtility().popupMenuDecoration(popupWidget);
+            },
+          ),
           dropdownDecoratorProps:
               StyleUtility().dropdownDecorator("Kota / Kabupaten Tujuan"),
           onChanged: (city) {
@@ -146,6 +186,16 @@ class ContentBody extends StatelessWidget {
             },
           ],
           itemAsString: (item) => item['name'],
+          popupProps: PopupProps.menu(
+            fit: FlexFit.loose,
+            menuProps: const MenuProps(
+              backgroundColor: Colors.transparent,
+              elevation: 0,
+            ),
+            containerBuilder: (ctx, popupWidget) {
+              return StyleUtility().popupMenuDecoration(popupWidget);
+            },
+          ),
           dropdownDecoratorProps: StyleUtility().dropdownDecorator(
             "Pilih Kurir",
           ),

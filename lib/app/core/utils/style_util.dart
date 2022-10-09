@@ -9,6 +9,38 @@ class StyleUtility {
     );
   }
 
+  Column popupMenuDecoration(Widget popupWidget) {
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: CrossAxisAlignment.end,
+      children: [
+        const SizedBox(
+          height: 12,
+        ),
+        Flexible(
+          child: Container(
+            decoration: const BoxDecoration(
+              color: Colors.white,
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black12,
+                  spreadRadius: 0.3,
+                  blurRadius: 0.5,
+                  offset: Offset(0, 0.2),
+                  // Shadow position
+                ),
+              ],
+              borderRadius: BorderRadius.all(
+                Radius.circular(12.0),
+              ),
+            ),
+            child: popupWidget,
+          ),
+        ),
+      ],
+    );
+  }
+
   InputDecoration outlinedInputDecoration(String label) {
     return InputDecoration(
       labelText: label,
