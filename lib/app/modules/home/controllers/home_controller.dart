@@ -97,6 +97,11 @@ class HomeController extends GetxController {
     return "";
   }
 
+  // Refresh View
+  void refreshData() {
+    Get.offAndToNamed(Routes.home);
+  }
+
   @override
   void onInit() async {
     await setProvinceData();

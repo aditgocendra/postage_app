@@ -12,37 +12,42 @@ class HomeView extends GetView<HomeController> {
   const HomeView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        elevation: 0.5,
-        title: const Text(
-          'Shipp',
-          style: TextStyle(
-            fontSize: 16,
-            color: blackColor,
+    return RefreshIndicator(
+      onRefresh: () async {
+        controller.refreshData();
+      },
+      child: Scaffold(
+        appBar: AppBar(
+          elevation: 0.5,
+          title: const Text(
+            'Shipp',
+            style: TextStyle(
+              fontSize: 16,
+              color: blackColor,
+            ),
           ),
+          centerTitle: true,
+          backgroundColor: whiteColor,
         ),
-        centerTitle: true,
-        backgroundColor: whiteColor,
-      ),
-      bottomNavigationBar: Container(
-        color: whiteColor,
-        child: Padding(
-          padding: const EdgeInsets.all(12.0),
-          child: ElevatedButton(
-            onPressed: () {
-              controller.checkPostage();
-            },
-            style: StyleUtility().buttonStylePill(),
-            child: const Text(
-              "Periksa Biaya",
-              style: TextStyle(fontSize: 14),
+        bottomNavigationBar: Container(
+          color: whiteColor,
+          child: Padding(
+            padding: const EdgeInsets.all(12.0),
+            child: ElevatedButton(
+              onPressed: () {
+                controller.checkPostage();
+              },
+              style: StyleUtility().buttonStylePill(),
+              child: const Text(
+                "Periksa Biaya",
+                style: TextStyle(fontSize: 14),
+              ),
             ),
           ),
         ),
-      ),
-      body: ContentBody(
-        controller: controller,
+        body: ContentBody(
+          controller: controller,
+        ),
       ),
     );
   }
