@@ -23,7 +23,10 @@ class ResultPostageController extends GetxController {
     );
 
     if (result.isLeft) {
-      DialogUtility.dialogWarning('Kesalahan', result.left.message ?? '');
+      DialogUtility.dialogWarning(
+        'Terjadi Kesalahan',
+        result.left.message ?? '',
+      );
       return;
     }
 

@@ -29,7 +29,10 @@ class HomeController extends GetxController {
   Future setProvinceData() async {
     final result = await repoCheckPostage.getProvinces();
     if (result.isLeft) {
-      Get.defaultDialog(title: "Error", middleText: result.left.message ?? '');
+      Get.defaultDialog(
+        title: "Terjadi Kesalahan",
+        middleText: result.left.message ?? '',
+      );
       return;
     }
 

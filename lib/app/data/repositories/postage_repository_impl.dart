@@ -6,13 +6,13 @@ import 'package:check_postage_app/app/data/remote/postage_remote_data.dart';
 import 'package:check_postage_app/app/data/repositories/postage_repository.dart';
 import 'package:either_dart/either.dart';
 import 'package:get/get.dart';
-import '../../core/error/error_model.dart';
+import '../../core/error/failure.dart';
 
 class PostageRepositoryImpl implements PostageRepository {
   final remoteSourceData = Get.find<PostageRemoteDataSource>();
 
   @override
-  Future<Either<ErrorModel, List<ProvinceModel>>> getProvinces() async {
+  Future<Either<Failure, List<ProvinceModel>>> getProvinces() async {
     List<ProvinceModel> province = [];
     // Get data province
     final value = await remoteSourceData.getDataProvince();
@@ -31,7 +31,7 @@ class PostageRepositoryImpl implements PostageRepository {
   }
 
   @override
-  Future<Either<ErrorModel, List<CityModel>>> getCity(String idProv) async {
+  Future<Either<Failure, List<CityModel>>> getCity(String idProv) async {
     List<CityModel> city = [];
     // Get data province
     final value = await remoteSourceData.getDataCity(idProv);
@@ -50,7 +50,7 @@ class PostageRepositoryImpl implements PostageRepository {
   }
 
   @override
-  Future<Either<ErrorModel, List<CourierServiceModel>>> getPostage(
+  Future<Either<Failure, List<CourierServiceModel>>> getPostage(
     String origin,
     String destination,
     String weight,
