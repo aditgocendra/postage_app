@@ -1,13 +1,15 @@
 import 'package:check_postage_app/app/core/bindings/initial_binding.dart';
 import 'package:check_postage_app/app/core/utils/color_util.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'app/routes/app_pages.dart';
 
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await dotenv.load(fileName: ".env");
   runApp(const App());
 }
 

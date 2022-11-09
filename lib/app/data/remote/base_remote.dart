@@ -13,7 +13,7 @@ abstract class BaseRemote extends HandlerRequestException {
     try {
       response = await http.get(
         Uri.parse(endPoint),
-        headers: {"key": apiKeyRajaOngkir},
+        headers: {"key": apiKeyRajaOngkir!},
       );
       return Right(response);
     } on SocketException {
@@ -33,7 +33,7 @@ abstract class BaseRemote extends HandlerRequestException {
       response = await http.post(
         Uri.parse(endPoint),
         headers: {
-          "key": apiKeyRajaOngkir,
+          "key": apiKeyRajaOngkir!,
           "Content-Type": "application/x-www-form-urlencoded"
         },
         body: body,

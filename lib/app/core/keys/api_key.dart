@@ -1,1 +1,3 @@
-const apiKeyRajaOngkir = "8349c7b5f5f1d35a946386f41345f8a4";
+import 'package:flutter_dotenv/flutter_dotenv.dart';
+
+var apiKeyRajaOngkir = dotenv.env['API_KEY_POSTAGE'];
