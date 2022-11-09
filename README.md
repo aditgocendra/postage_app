@@ -15,6 +15,6 @@ Shipp is an application to check shipping costs from various shipping services, 
 ![Screenshot1](https://user-images.githubusercontent.com/52599512/200748982-1c1199d7-170d-4018-aa7d-3d38cac77ec3.jpg) | ![Screenshot2](https://user-images.githubusercontent.com/52599512/200748987-ec8464a0-7b03-41c9-938c-99ed806d9fc4.jpg)
 ---
 
-[Privacy Policy] https://www.privacypolicyonline.com/live.php?token=HmrjZJko2BiZTQimhuFMN4luDppDpUg5
+[Privacy Policy](https://www.privacypolicyonline.com/live.php?token=HmrjZJko2BiZTQimhuFMN4luDppDpUg5)
 
 
