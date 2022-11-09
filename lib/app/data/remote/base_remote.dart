@@ -39,7 +39,7 @@ abstract class BaseRemote extends HandlerRequestException {
         body: body,
       );
       return Right(response);
-    } on SocketException catch (e) {
+    } on SocketException catch (_) {
       return Left(handleErrorConnection());
     } catch (_) {
       return Left(handleErrorRequest(response!.statusCode));
