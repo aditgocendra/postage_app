@@ -6,6 +6,7 @@ import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import '../controllers/home_controller.dart';
 
 class HomeView extends GetView<HomeController> {
@@ -214,9 +215,28 @@ class ContentBody extends StatelessWidget {
           cursorColor: primaryColor,
           keyboardType: TextInputType.number,
           inputFormatters: [FilteringTextInputFormatter.digitsOnly],
-          decoration:
-              StyleUtility().outlinedInputDecoration('Berat Barang (Gram)'),
+          decoration: StyleUtility().outlinedInputDecoration(
+            'Berat Barang (Gram)',
+          ),
         ),
+        const SizedBox(
+          height: 20,
+        ),
+        Obx(
+          () {
+            if (controller.isLoadingAds.value) {
+              return Container();
+            }
+
+            return SizedBox(
+              width: controller.bannerAd.size.width.toDouble(),
+              height: controller.bannerAd.size.height.toDouble(),
+              child: AdWidget(
+                ad: controller.bannerAd,
+              ),
+            );
+          },
+        )
       ],
     );
   }

@@ -4,9 +4,19 @@ import 'package:check_postage_app/app/data/models/province_model.dart';
 import 'package:check_postage_app/app/data/repositories/postage_repository.dart';
 import 'package:check_postage_app/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get/get.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 
 class HomeController extends GetxController {
+  late BannerAd bannerAd;
+  final isLoadingAds = true.obs;
+
+  var idApp = dotenv.env['ID_APP'];
+  var unitBannerAds = dotenv.env['UNIT_BANNER_ADS'];
+  var unitTestBannerAds = dotenv.env['UNIT_TEST_BANNER_ADS'];
+
+  // OBS
   final originProvince = '0'.obs;
   final originCity = '0'.obs;
   final destinationProvince = '0'.obs;
@@ -105,6 +115,28 @@ class HomeController extends GetxController {
   @override
   void onInit() async {
     await setProvinceData();
+
+    bannerAd = BannerAd(
+      size: AdSize.fullBanner,
+      adUnitId: unitBannerAds!,
+      listener: BannerAdListener(
+        onAdLoaded: (ad) {
+          // print('$ad loaded admob : ${ad.responseInfo}');
+          bannerAd = ad as BannerAd;
+          isLoadingAds.toggle();
+        },
+        onAdFailedToLoad: (ad, error) {
+          print('Failed to load ad : $error');
+          isLoadingAds.toggle();
+
+          // ad.dispose();
+        },
+      ),
+      request: const AdRequest(),
+    );
+
+    bannerAd.load();
+
     super.onInit();
   }
 }

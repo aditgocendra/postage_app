@@ -1,5 +1,5 @@
 name: check_postage_app
-version: 1.0.0+1
+version: 1.0.0+2
 publish_to: none
 description: A new Flutter project.
 environment:
@@ -19,6 +19,7 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_dotenv: ^5.0.2
+  google_mobile_ads: ^2.2.0
 
 dev_dependencies:
   flutter_lints: ^2.0.0
