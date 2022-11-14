@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
-
 import '../../../core/utils/color_util.dart';
 import '../../../core/utils/format_util.dart';
 import '../../../data/models/courier_service_model.dart';

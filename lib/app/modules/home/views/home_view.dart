@@ -1,12 +1,12 @@
-import 'package:check_postage_app/app/core/utils/color_util.dart';
-import 'package:check_postage_app/app/core/utils/style_util.dart';
-import 'package:check_postage_app/app/data/models/city_model.dart';
-import 'package:check_postage_app/app/data/models/province_model.dart';
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
+import '../../../core/utils/color_util.dart';
+import '../../../core/utils/style_util.dart';
+import '../../../data/models/city_model.dart';
+import '../../../data/models/province_model.dart';
 import '../controllers/home_controller.dart';
 
 class HomeView extends GetView<HomeController> {

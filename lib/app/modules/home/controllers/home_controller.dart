@@ -1,18 +1,17 @@
-import 'package:check_postage_app/app/core/utils/dialog_util.dart';
-import 'package:check_postage_app/app/data/models/city_model.dart';
-import 'package:check_postage_app/app/data/models/province_model.dart';
-import 'package:check_postage_app/app/data/repositories/postage_repository.dart';
-import 'package:check_postage_app/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get/get.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
+import '../../../core/utils/dialog_util.dart';
+import '../../../data/models/city_model.dart';
+import '../../../data/models/province_model.dart';
+import '../../../data/repositories/postage_repository.dart';
+import '../../../routes/app_pages.dart';
 
 class HomeController extends GetxController {
   late BannerAd bannerAd;
   final isLoadingAds = true.obs;
 
-  var idApp = dotenv.env['ID_APP'];
   var unitBannerAds = dotenv.env['UNIT_BANNER_ADS'];
   var unitTestBannerAds = dotenv.env['UNIT_TEST_BANNER_ADS'];
 
@@ -126,7 +125,6 @@ class HomeController extends GetxController {
           isLoadingAds.toggle();
         },
         onAdFailedToLoad: (ad, error) {
-          print('Failed to load ad : $error');
           isLoadingAds.toggle();
 
           // ad.dispose();
