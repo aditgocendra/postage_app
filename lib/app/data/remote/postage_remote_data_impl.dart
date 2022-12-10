@@ -1,25 +1,62 @@
-import 'package:check_postage_app/app/core/error/failure.dart';
-import 'package:check_postage_app/app/data/remote/base_remote.dart';
-import 'package:check_postage_app/app/data/remote/postage_remote_data.dart';
+import 'dart:io';
+import '../../core/error/error_handler.dart';
+import '../../core/error/failure.dart';
+import '../../core/utils/api_utils.dart';
+import 'postage_remote_data.dart';
 import 'package:either_dart/either.dart';
-import 'package:http/http.dart' as http;
+import 'package:get/get.dart';
 
-class PostageRemoteDataImpl extends BaseRemote
-    implements PostageRemoteDataSource {
+class PostageRemoteDataImpl extends GetConnect
+    with HandlerRequestException
+    implements PostageRemoteData {
   @override
-  Future<Either<Failure, http.Response>> getDataProvince() async {
-    return await getRequest("https://api.rajaongkir.com/starter/province");
+  Future<Either<Failure, dynamic>> getDataProvince() async {
+    Response? response;
+
+    try {
+      response = await get("${endpointRajaongkirAPI}province", headers: {
+        "key": apiKeyRajaOngkir!,
+      });
+
+      return Right(response.body);
+    } on SocketException {
+      return Left(
+        handleErrorConnection(),
+      );
+    } catch (_) {
+      Failure err = handleErrorRequest(
+        response!.statusCode!,
+      );
+      return Left(err);
+    }
   }
 
   @override
-  Future<Either<Failure, http.Response>> getDataCity(String idProv) async {
-    return await getRequest(
-      "https://api.rajaongkir.com/starter/city?province=$idProv",
-    );
+  Future<Either<Failure, dynamic>> getDataCity(String idProv) async {
+    Response? response;
+
+    try {
+      response =
+          await get("${endpointRajaongkirAPI}city?province=$idProv", headers: {
+        "key": apiKeyRajaOngkir!,
+      });
+
+      // Return body
+      return Right(response.body);
+    } on SocketException {
+      return Left(
+        handleErrorConnection(),
+      );
+    } catch (_) {
+      Failure err = handleErrorRequest(
+        response!.statusCode!,
+      );
+      return Left(err);
+    }
   }
 
   @override
-  Future<Either<Failure, http.Response>> getDataPostage(
+  Future<Either<Failure, dynamic>> getDataPostage(
     String origin,
     String destination,
     String weight,
@@ -32,7 +69,23 @@ class PostageRemoteDataImpl extends BaseRemote
       "courier": courier
     };
 
-    return await postRequest(
-        "https://api.rajaongkir.com/starter/cost", reqBody);
+    Response? response;
+
+    try {
+      response = await post("${endpointRajaongkirAPI}cost", reqBody, headers: {
+        "key": apiKeyRajaOngkir!,
+      });
+
+      return Right(response.body);
+    } on SocketException {
+      return Left(
+        handleErrorConnection(),
+      );
+    } catch (_) {
+      Failure err = handleErrorRequest(
+        response!.statusCode!,
+      );
+      return Left(err);
+    }
   }
 }
