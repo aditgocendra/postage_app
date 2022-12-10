@@ -1,11 +1,11 @@
-import 'package:check_postage_app/app/core/error/failure.dart';
 import 'package:either_dart/either.dart';
-import 'package:http/http.dart';
 
-abstract class PostageRemoteDataSource {
-  Future<Either<Failure, Response>> getDataProvince();
-  Future<Either<Failure, Response>> getDataCity(String idProv);
-  Future<Either<Failure, Response>> getDataPostage(
+import '../../core/error/failure.dart';
+
+abstract class PostageRemoteData {
+  Future<Either<Failure, dynamic>> getDataProvince();
+  Future<Either<Failure, dynamic>> getDataCity(String idProv);
+  Future<Either<Failure, dynamic>> getDataPostage(
     String origin,
     String destination,
     String weight,
