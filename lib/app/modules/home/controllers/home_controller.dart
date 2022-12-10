@@ -120,14 +120,13 @@ class HomeController extends GetxController {
       adUnitId: unitBannerAds!,
       listener: BannerAdListener(
         onAdLoaded: (ad) {
-          // print('$ad loaded admob : ${ad.responseInfo}');
           bannerAd = ad as BannerAd;
           isLoadingAds.toggle();
         },
         onAdFailedToLoad: (ad, error) {
           isLoadingAds.toggle();
 
-          // ad.dispose();
+          ad.dispose();
         },
       ),
       request: const AdRequest(),
