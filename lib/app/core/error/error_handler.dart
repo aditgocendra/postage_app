@@ -1,6 +1,6 @@
 import 'failure.dart';
 
-abstract class HandlerRequestException {
+class HandlerRequestException {
   // Handle Error Request
   Failure handleErrorRequest(int statusCode) {
     switch (statusCode) {
